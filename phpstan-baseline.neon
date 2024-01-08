@@ -1,0 +1,6 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method App\\\\Actions\\\\Action\\:\\:handle\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: app/Actions/Action.php
