@@ -6,6 +6,7 @@ namespace App\Console\Commands\Ista;
 
 use App\Actions\Ista\ImportUsage as ImportValuesAction;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Cache;
 
 class ImportUsage extends Command
 {
@@ -20,5 +21,7 @@ class ImportUsage extends Command
         $jwtToken = (new GetJwt())->handle();
 
         (new ImportValuesAction($jwtToken))->handle();
+
+        Cache::forget('ista-usages');
     }
 }
