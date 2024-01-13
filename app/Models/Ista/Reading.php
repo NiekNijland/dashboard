@@ -11,8 +11,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int $usage_id
  * @property string $ista_meter_id
+ * @property string $name
  * @property CarbonImmutable $date
  * @property int $usage
+ * @property int $usage_previous_year
  */
 class Reading extends Model
 {
@@ -21,8 +23,10 @@ class Reading extends Model
     protected $fillable = [
         'usage_id',
         'ista_meter_id',
+        'name',
         'date',
         'usage',
+        'usage_previous_year',
     ];
 
     protected $casts = [

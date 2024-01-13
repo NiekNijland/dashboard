@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Ista;
+use App\Http\Controllers\Profile;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,11 @@ use App\Http\Controllers\Ista;
 |
 */
 
+Route::redirect('home', 'ista');
+
 Route::prefix('ista')->group(static function (): void {
-    Route::get('', Ista\IndexController::class)->name('ista.index');
+    Route::get('{period?}', Ista\IndexController::class)->name('ista');
 });
+
+Route::get('profile', Profile\IndexController::class)
+    ->name('profile');

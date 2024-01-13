@@ -4,3 +4,33 @@ parameters:
 			message: "#^Method App\\\\Actions\\\\Action\\:\\:handle\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: app/Actions/Action.php
+
+		-
+			message: "#^Argument of an invalid type MongoDB\\\\Laravel\\\\Collection supplied for foreach, only iterables are supported\\.$#"
+			count: 1
+			path: app/Actions/Ista/GetUsagePerMonth.php
+
+		-
+			message: "#^Method App\\\\Actions\\\\Ista\\\\GetUsagePerMonth\\:\\:handle\\(\\) return type with generic class Spatie\\\\LaravelData\\\\DataCollection does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: app/Actions/Ista/GetUsagePerMonth.php
+
+		-
+			message: "#^Method App\\\\Actions\\\\Ista\\\\ImportUsage\\:\\:getUsage\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: app/Actions/Ista/ImportUsage.php
+
+		-
+			message: "#^Method App\\\\Actions\\\\Ista\\\\ImportUsage\\:\\:importData\\(\\) has parameter \\$usageData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: app/Actions/Ista/ImportUsage.php
+
+		-
+			message: "#^Parameter \\$periodEnd of method App\\\\Actions\\\\Ista\\\\ImportUsage\\:\\:getBuildingAverage\\(\\) expects Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\|false given\\.$#"
+			count: 1
+			path: app/Actions/Ista/ImportUsage.php
+
+		-
+			message: "#^Parameter \\$periodStart of method App\\\\Actions\\\\Ista\\\\ImportUsage\\:\\:getBuildingAverage\\(\\) expects Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\|false given\\.$#"
+			count: 1
+			path: app/Actions/Ista/ImportUsage.php

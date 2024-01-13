@@ -11,6 +11,10 @@ use Carbon\CarbonImmutable;
  * @property string $ista_id
  * @property CarbonImmutable $date
  * @property int $usage
+ * @property int $usage_previous_year
+ * @property int $building_average_usage
+ * @property CarbonImmutable $period_start
+ * @property CarbonImmutable $period_end
  */
 class Usage extends Model
 {
@@ -20,6 +24,8 @@ class Usage extends Model
         'ista_id',
         'date',
         'usage',
+        'usage_previous_year',
+        'building_average_usage',
         'period_start',
         'period_end',
     ];
