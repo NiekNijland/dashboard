@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Actions\Ista;
 
 use App\Actions\Action;
-use App\Data\Ista\MonthUsage;
+use App\Data\Ista\WeekUsage;
 use App\Models\Ista\Usage;
 use Carbon\CarbonImmutable;
 use Iterator;
@@ -13,15 +13,15 @@ use MongoDB\Driver\CursorInterface;
 use MongoDB\Laravel\Collection;
 use Spatie\LaravelData\DataCollection;
 
-readonly class GetUsagePerMonth implements Action
+readonly class GetUsagePerWeek implements Action
 {
     public function __construct(
-        private int $months = 12,
+        private int $weeks = 12,
     ) {
     }
 
     /**
-     * @return DataCollection<int, MonthUsage>
+     * @return DataCollection<int, WeekUsage>
      */
     public function handle(): DataCollection
     {
@@ -30,8 +30,8 @@ readonly class GetUsagePerMonth implements Action
             return $collection->aggregate([
                 [
                     '$addFields' => [
-                        'month' => [
-                            '$month' => '$date',
+                        'week' => [
+                            '$isoWeek' => '$date',
                         ],
                         'year' => [
                             '$year' => '$date',
@@ -46,7 +46,7 @@ readonly class GetUsagePerMonth implements Action
                 [
                     '$group' => [
                         '_id' => [
-                            'month' => '$month',
+                            'week' => '$week',
                             'year' => '$year',
                         ],
                         'usage' => [
@@ -61,7 +61,7 @@ readonly class GetUsagePerMonth implements Action
                     ],
                 ],
                 [
-                    '$limit' => $this->months,
+                    '$limit' => $this->weeks,
                 ],
             ]);
         });
@@ -70,11 +70,10 @@ readonly class GetUsagePerMonth implements Action
 
         foreach ($data as $usage) {
             $date = (new CarbonImmutable())
-                ->setYear($usage['_id']['year'])
-                ->setMonth($usage['_id']['month'])
-                ->startOfMonth();
+                ->setISODate($usage['_id']['year'], $usage['_id']['week'])
+                ->startOfWeek();
 
-            $result[] = new MonthUsage(
+            $result[] = new WeekUsage(
                 date: $date,
                 usage: $usage['usage'],
                 usage_previous_year: $usage['usage_previous_year'],
@@ -82,6 +81,6 @@ readonly class GetUsagePerMonth implements Action
             );
         }
 
-        return new DataCollection(MonthUsage::class, $result);
+        return new DataCollection(WeekUsage::class, $result);
     }
 }

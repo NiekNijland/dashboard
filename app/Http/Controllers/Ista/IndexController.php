@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Ista;
 
 use App\Actions\Ista\GetUsagePerMonth;
+use App\Actions\Ista\GetUsagePerWeek;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
@@ -17,7 +18,7 @@ class IndexController extends Controller
         $usages = match ($period) {
             'week' => Cache::get(
                 'ista-week-usages',
-                static fn (): DataCollection => (new GetUsagePerMonth())->handle()
+                static fn (): DataCollection => (new GetUsagePerWeek())->handle()
             ),
             default => Cache::get(
                 'ista-month-usages',

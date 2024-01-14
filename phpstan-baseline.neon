@@ -11,9 +11,9 @@ parameters:
 			path: app/Actions/Ista/GetUsagePerMonth.php
 
 		-
-			message: "#^Method App\\\\Actions\\\\Ista\\\\GetUsagePerMonth\\:\\:handle\\(\\) return type with generic class Spatie\\\\LaravelData\\\\DataCollection does not specify its types\\: TKey, TValue$#"
+			message: "#^Argument of an invalid type MongoDB\\\\Laravel\\\\Collection supplied for foreach, only iterables are supported\\.$#"
 			count: 1
-			path: app/Actions/Ista/GetUsagePerMonth.php
+			path: app/Actions/Ista/GetUsagePerWeek.php
 
 		-
 			message: "#^Method App\\\\Actions\\\\Ista\\\\ImportUsage\\:\\:getUsage\\(\\) return type has no value type specified in iterable type array\\.$#"
