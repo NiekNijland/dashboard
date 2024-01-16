@@ -29,5 +29,8 @@ jobs:
       - name: Run PHPStan
         run: vendor/bin/phpstan analyze
 
+      - name: Run Pint
+        run: vendor/bin/pint --test --config https://raw.githubusercontent.com/DIJ-digital/pint-config/f9a52276294d2b1c323f5883fdc29884d4943e54/pint.json
+
       - name: Cleanup
         run: composer clear-cache

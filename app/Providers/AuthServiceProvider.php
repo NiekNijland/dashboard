@@ -25,8 +25,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('viewPulse', static function (User $user) {
-            return true;
-        });
+        Gate::define('viewPulse', static fn (User $user) => true);
     }
 }
