@@ -45,6 +45,26 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
+        'mysql' => [
+            'driver' => 'mysql',
+            'url' => env('MYSQL_DATABASE_URL'),
+            'host' => env('MYSQL_DB_HOST', '127.0.0.1'),
+            'port' => env('MYSQL_DB_PORT', '3306'),
+            'database' => env('MYSQL_DB_DATABASE', 'forge'),
+            'username' => env('MYSQL_DB_USERNAME', 'forge'),
+            'password' => env('MYSQL_DB_PASSWORD', ''),
+            'unix_socket' => env('MYSQL_DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
@@ -77,8 +97,8 @@ return [
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'dsn' => env('DB_DSN'),
-            'database' => env('DB_DATABASE', 'dashboard'),
+            'dsn' => env('MONGODB_DSN'),
+            'database' => env('MONGODB_DATABASE', 'dashboard'),
         ],
 
     ],
