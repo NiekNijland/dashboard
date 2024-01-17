@@ -17,6 +17,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.composer/cache
+          key: composer-${{ runner.os }}-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            composer-${{ runner.os }}-
+
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -34,6 +43,7 @@ jobs:
 
       - name: Cleanup
         run: composer clear-cache
+
   deploy:
     runs-on: ubuntu-latest
     needs: analysis
