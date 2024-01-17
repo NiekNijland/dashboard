@@ -8,6 +8,8 @@ php artisan optimize
 
 php artisan clear
 
+echo $PATH
+
 nvm use 20
 
 npm i
