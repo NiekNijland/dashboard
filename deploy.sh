@@ -4,11 +4,11 @@ rm -rf vendor
 
 composer install --no-interaction --prefer-dist --optimize-autoloader
 
-php artisan migrate --force
+php artisan clear
 
 php artisan optimize
 
-php artisan clear
+php artisan migrate --force
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
