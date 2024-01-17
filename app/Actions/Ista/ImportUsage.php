@@ -21,12 +21,14 @@ readonly class ImportUsage implements Action
 
     public function handle(): void
     {
-        $usageData = Cache::get(
+        $usageData = Cache::remember(
             'ista-usage-data-' . CarbonImmutable::now()->format('d-m-Y'),
+            24 * 60 * 60,
             fn () => $this->getUsage());
 
-        $buildingAverage = Cache::get(
+        $buildingAverage = Cache::remember(
             'ista-building-average-' . CarbonImmutable::now()->format('d-m-Y'),
+            24 * 60 * 60,
             fn () => $this->getBuildingAverage(
                 customerId: $usageData['Cus'][0]['Cuid'],
                 periodStart: CarbonImmutable::createFromFormat('d-m-Y', $usageData['Cus'][0]['curConsumption']['CurStart']),
@@ -34,6 +36,9 @@ readonly class ImportUsage implements Action
             ));
 
         $this->importData($usageData, $buildingAverage);
+
+        Cache::forget('ista-week-usages');
+        Cache::forget('ista-month-usages');
     }
 
     /**

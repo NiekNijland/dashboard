@@ -16,11 +16,11 @@ class IndexController extends Controller
     public function __invoke(?string $period = null): View
     {
         $usages = match ($period) {
-            'week' => Cache::get(
+            'week' => Cache::rememberForever(
                 'ista-week-usages',
                 static fn (): DataCollection => (new GetUsagePerWeek())->handle()
             ),
-            default => Cache::get(
+            default => Cache::rememberForever(
                 'ista-month-usages',
                 static fn (): DataCollection => (new GetUsagePerMonth())->handle()
             ),
