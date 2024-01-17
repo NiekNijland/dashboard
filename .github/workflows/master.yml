@@ -36,7 +36,9 @@ jobs:
         run: composer clear-cache
   deploy:
     runs-on: ubuntu-latest
-
+    environment:
+      name: production
+      url: secrets.URL
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
