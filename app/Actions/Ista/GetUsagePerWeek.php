@@ -61,6 +61,11 @@ readonly class GetUsagePerWeek implements Action
                     ],
                 ],
                 [
+                    '$sort' => [
+                        '_id' => -1,
+                    ],
+                ],
+                [
                     '$limit' => $this->weeks,
                 ],
             ]);

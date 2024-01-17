@@ -61,6 +61,11 @@ readonly class GetUsagePerMonth implements Action
                     ],
                 ],
                 [
+                    '$sort' => [
+                        '_id' => -1,
+                    ],
+                ],
+                [
                     '$limit' => $this->months,
                 ],
             ]);
