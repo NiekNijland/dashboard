@@ -50,4 +50,4 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }} ./deploy.sh
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }} 'cd /var/www/dashboard && git reset --head && git pull && ./deploy.sh'
