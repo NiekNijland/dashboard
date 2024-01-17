@@ -6,6 +6,8 @@ php artisan migrate --force
 
 php artisan optimize
 
+php artisan clear
+
 npm i
 
 npm run build
