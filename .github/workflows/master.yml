@@ -51,4 +51,4 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }}
+          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_IP }}
