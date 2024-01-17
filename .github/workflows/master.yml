@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  analyze:
+  analysis:
     runs-on: ubuntu-latest
 
     strategy:
@@ -36,6 +36,7 @@ jobs:
         run: composer clear-cache
   deploy:
     runs-on: ubuntu-latest
+    needs: analysis
     environment:
       name: production
       url: secrets.URL
@@ -50,4 +51,4 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }} 'cd /var/www/dashboard && git reset --head && git pull && ./deploy.sh'
+          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }} 'cd /var/www/dashboard && git reset --head && git pull && ./deploy.sh'
