@@ -51,4 +51,4 @@ jobs:
 
       - name: Deploy to Server
         run: |
-          ssh -v -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }} 'cd /var/www/dashboard && ls -lah'
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }}
