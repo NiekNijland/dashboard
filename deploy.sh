@@ -8,6 +8,8 @@ php artisan optimize
 
 php artisan clear
 
+nvm use 20
+
 npm i
 
 npm run build
