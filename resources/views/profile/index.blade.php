@@ -5,10 +5,6 @@
         :first-name="$user->first_name"
         :last-name="$user->last_name"
         :email="$user->email"
-        :height="$user->height ?? ''"
-        :neck-circumference="$user->neck_circumference ?? ''"
-        :date-of-birth="$user->date_of_birth?->format('d-m-Y') ?? ''"
-        :gender="$user->gender?->value"
     />
     <x-modals.confirmation-modal
         id="profile-saved-confirmation-modal"
