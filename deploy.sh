@@ -8,7 +8,7 @@ php artisan optimize
 
 php artisan clear
 
-echo $PATH
+source ~/.bashrc
 
 nvm use 20
 
