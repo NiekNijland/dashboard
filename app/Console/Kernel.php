@@ -13,6 +13,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command(ImportUsage::class)->dailyAt('23:00');
+
+        $schedule->command('cache:prune-stale-tags')->hourly();
     }
 
     protected function commands(): void
