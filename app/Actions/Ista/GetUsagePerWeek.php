@@ -26,7 +26,7 @@ readonly class GetUsagePerWeek implements Action
     public function handle(): DataCollection
     {
         /** @var Collection $data */
-        $data = Usage::raw(fn(Collection $collection): Iterator&CursorInterface => $collection->aggregate([
+        $data = Usage::raw(fn (Collection $collection): Iterator&CursorInterface => $collection->aggregate([
             [
                 '$addFields' => [
                     'week' => [
@@ -74,7 +74,8 @@ readonly class GetUsagePerWeek implements Action
         foreach ($data as $usage) {
             $date = (new CarbonImmutable())
                 ->setISODate($usage['_id']['year'], $usage['_id']['week'])
-                ->startOfWeek();
+                ->startOfWeek()
+                ->toImmutable();
 
             $result[] = new WeekUsage(
                 date: $date,

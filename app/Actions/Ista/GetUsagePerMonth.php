@@ -26,7 +26,7 @@ readonly class GetUsagePerMonth implements Action
     public function handle(): DataCollection
     {
         /** @var Collection $data */
-        $data = Usage::raw(fn(Collection $collection): Iterator&CursorInterface => $collection->aggregate([
+        $data = Usage::raw(fn (Collection $collection): Iterator&CursorInterface => $collection->aggregate([
             [
                 '$addFields' => [
                     'month' => [

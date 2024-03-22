@@ -26,11 +26,11 @@ parameters:
 			path: app/Actions/Ista/ImportUsage.php
 
 		-
-			message: "#^Parameter \\$periodEnd of method App\\\\Actions\\\\Ista\\\\ImportUsage\\:\\:getBuildingAverage\\(\\) expects Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\|false given\\.$#"
+			message: "#^Parameter \\$periodEnd of method App\\\\Actions\\\\Ista\\\\ImportUsage\\:\\:getBuildingAverage\\(\\) expects Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\|null given\\.$#"
 			count: 1
 			path: app/Actions/Ista/ImportUsage.php
 
 		-
-			message: "#^Parameter \\$periodStart of method App\\\\Actions\\\\Ista\\\\ImportUsage\\:\\:getBuildingAverage\\(\\) expects Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\|false given\\.$#"
+			message: "#^Parameter \\$periodStart of method App\\\\Actions\\\\Ista\\\\ImportUsage\\:\\:getBuildingAverage\\(\\) expects Carbon\\\\CarbonImmutable, Carbon\\\\CarbonImmutable\\|null given\\.$#"
 			count: 1
 			path: app/Actions/Ista/ImportUsage.php
