@@ -26,50 +26,48 @@ readonly class GetUsagePerMonth implements Action
     public function handle(): DataCollection
     {
         /** @var Collection $data */
-        $data = Usage::raw(function (Collection $collection): Iterator&CursorInterface {
-            return $collection->aggregate([
-                [
-                    '$addFields' => [
-                        'month' => [
-                            '$month' => '$date',
-                        ],
-                        'year' => [
-                            '$year' => '$date',
-                        ],
+        $data = Usage::raw(fn(Collection $collection): Iterator&CursorInterface => $collection->aggregate([
+            [
+                '$addFields' => [
+                    'month' => [
+                        '$month' => '$date',
+                    ],
+                    'year' => [
+                        '$year' => '$date',
                     ],
                 ],
-                [
-                    '$sort' => [
-                        'date' => -1,
+            ],
+            [
+                '$sort' => [
+                    'date' => -1,
+                ],
+            ],
+            [
+                '$group' => [
+                    '_id' => [
+                        'month' => '$month',
+                        'year' => '$year',
+                    ],
+                    'usage' => [
+                        '$first' => '$usage',
+                    ],
+                    'usage_previous_year' => [
+                        '$first' => '$usage_previous_year',
+                    ],
+                    'building_average_usage' => [
+                        '$first' => '$building_average_usage',
                     ],
                 ],
-                [
-                    '$group' => [
-                        '_id' => [
-                            'month' => '$month',
-                            'year' => '$year',
-                        ],
-                        'usage' => [
-                            '$first' => '$usage',
-                        ],
-                        'usage_previous_year' => [
-                            '$first' => '$usage_previous_year',
-                        ],
-                        'building_average_usage' => [
-                            '$first' => '$building_average_usage',
-                        ],
-                    ],
+            ],
+            [
+                '$sort' => [
+                    '_id' => -1,
                 ],
-                [
-                    '$sort' => [
-                        '_id' => -1,
-                    ],
-                ],
-                [
-                    '$limit' => $this->months,
-                ],
-            ]);
-        });
+            ],
+            [
+                '$limit' => $this->months,
+            ],
+        ]));
 
         $result = [];
 
