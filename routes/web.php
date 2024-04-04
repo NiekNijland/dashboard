@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Actions\MotorOccasion\Search;
+use App\Enums\MotorOccasion\Brand;
+use App\Enums\MotorOccasion\Model;
 use App\Http\Controllers\Ista;
 use App\Http\Controllers\Profile;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +28,11 @@ Route::prefix('ista')->group(static function (): void {
 
 Route::get('profile', Profile\IndexController::class)
     ->name('profile');
+
+Route::get('test', static function (): void {
+    $results = (new Search(Brand::SUZUKI, Model::GSXR_1100))->handle();
+
+    foreach ($results->toArray() as $result) {
+        dump($result);
+    }
+});

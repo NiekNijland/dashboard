@@ -17,7 +17,8 @@
         "livewire/livewire": "^3.3",
         "mongodb/laravel-mongodb": "^4.2",
         "predis/predis": "^2.2",
-        "spatie/laravel-data": "^4.4"
+        "spatie/laravel-data": "^4.4",
+        "ext-dom": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -49,7 +50,7 @@
     },
     "scripts": {
         "phpstan": [
-            "vendor/bin/phpstan analyse"
+            "vendor/bin/phpstan --memory-limit=2G"
         ],
         "pint": [
             "@php vendor/bin/pint --config https://raw.githubusercontent.com/DIJ-digital/pint-config/f9a52276294d2b1c323f5883fdc29884d4943e54/pint.json"
