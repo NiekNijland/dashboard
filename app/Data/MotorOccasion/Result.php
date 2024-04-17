@@ -11,7 +11,7 @@ class Result extends Data
     public function __construct(
         public string $brand,
         public string $model,
-        public float $price,
+        public int $price,
         public int $year,
         public int $odometerReading,
         public string $odometerReadingUnit,

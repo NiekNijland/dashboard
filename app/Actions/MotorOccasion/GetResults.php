@@ -132,11 +132,11 @@ readonly class GetResults implements Action
         return new Result(
             brand: html_entity_decode(str_replace('&nbsp;', '', htmlentities($titleElement->childNodes->item(0)?->nodeValue ?? ''))),
             model: $titleElement->childNodes->item(1)?->nodeValue ?? '',
-            price: (static function (string $price): float {
+            price: (static function (string $price): int {
                 $decodedPrice = html_entity_decode(str_replace('&nbsp;', '', htmlentities($price)));
                 $decodedPrice = mb_substr(mb_substr($decodedPrice, 1), 0, -2);
 
-                return (float) $decodedPrice;
+                return (int) str_replace('.', '', $decodedPrice);
             })($priceElement->childNodes->item(0)?->nodeValue ?? ''),
             year: $year,
             odometerReading: $odometerReading,
