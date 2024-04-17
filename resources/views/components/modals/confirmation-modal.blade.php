@@ -24,15 +24,20 @@
             -->
             <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
                 <div>
-                    <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                        @if ($success)
-                        <!-- Heroicon name: outline/check -->
-                        <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                        </svg>
-                        @else
-                        @endif
-                    </div>
+                    @if ($success)
+                        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                            <!-- Heroicon name: outline/check -->
+                            <svg class="h-6 w-6 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        </div>
+                    @else
+                        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                            </svg>
+                        </div>
+                    @endif
                     <div class="mt-3 text-center sm:mt-5">
                         <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">
                             {{ $title }}

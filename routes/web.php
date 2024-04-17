@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Ista;
 use App\Http\Controllers\Profile;
+use App\Http\Controllers\Torrents;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +26,8 @@ Route::prefix('ista')->group(static function (): void {
 
 Route::get('profile', Profile\IndexController::class)
     ->name('profile');
+
+Route::prefix('torrents')->group(static function (): void {
+    Route::get('', Torrents\IndexController::class)
+        ->name('torrents');
+});
