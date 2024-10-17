@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\MotorOccasion;
+namespace App\Integrations\MotorOccasion\Actions;
 
 use App\Actions\Action;
+use App\Data\MotorOccasion\Brand;
 use App\Data\MotorOccasion\Result;
-use App\Enums\MotorOccasion\Brand;
-use App\Enums\MotorOccasion\Model;
+use App\Data\MotorOccasion\SearchQuery;
+use App\Data\MotorOccasion\Type;
 use Illuminate\Support\Collection;
 
 readonly class Search implements Action
 {
-    public function __construct(private Brand $brand, private Model $model)
+    public function __construct(private SearchQuery $searchQuery)
     {
     }
 
@@ -23,8 +24,8 @@ readonly class Search implements Action
     {
         $sessionId = (new GetSessionId())->handle();
 
-        (new SetBrand($sessionId, $this->brand))->handle();
-        (new SetModel($sessionId, $this->model))->handle();
+        (new SetBrand($sessionId, $this->searchQuery->brand))->handle();
+        (new SetType($sessionId, $this->searchQuery->type))->handle();
 
         return (new GetResults($sessionId))->handle();
     }

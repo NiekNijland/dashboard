@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\MotorOccasion;
+namespace App\Integrations\MotorOccasion\Actions;
 
 use App\Actions\Action;
 use App\Data\MotorOccasion\Result;
 use App\Data\MotorOccasion\Seller;
 use DOMDocument;
 use DOMElement;
+use DOMText;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use RuntimeException;
@@ -119,7 +120,11 @@ readonly class GetResults implements Action
         $odometerDebris = explode(' ', $yearAndOdometerDebris[1]);
 
         $odometerReading = (int) $odometerDebris[0];
-        $odometerReadingUnit = strtoupper($odometerDebris[1]);
+        $odometerReadingUnit = isset($odometerDebris[1]) ? strtoupper($odometerDebris[1]) : 'KM';
+
+        if ($odometerReadingUnit === 'NIEUW') {
+            $odometerReadingUnit = 'KM';
+        }
 
         // GET SELLER
 
@@ -146,7 +151,7 @@ readonly class GetResults implements Action
             seller: new Seller(
                 name: $sellerLink->nodeValue ?? '',
                 province: substr($sellerProvince->nodeValue ?? '', -2),
-                website: $sellerLink->getAttribute('href')
+                website: $sellerLink instanceof DOMText ? $sellerLink->nodeValue : $sellerLink->getAttribute('href')
             ),
         );
     }

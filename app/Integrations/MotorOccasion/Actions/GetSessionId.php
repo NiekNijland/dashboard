@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\MotorOccasion;
+namespace App\Integrations\MotorOccasion\Actions;
 
 use App\Actions\Action;
 use Illuminate\Support\Facades\Http;

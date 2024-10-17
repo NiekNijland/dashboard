@@ -9,7 +9,12 @@
                     <h5>{{ $result->brand . ' ' . $result->model }}</h5>
                     <p class="mt-2 sm:mt-0">{{ '€' . number_format($result->price, 0, ',', '.') }}</p>
                 </div>
-                <p class="hidden text-gray-500 sm:mt-2 sm:block">Are you a minimalist looking for a compact carry option? The Micro Backpack is the perfect size for your essential everyday carry items. Wear it like a backpack or carry it like a satchel for all-day use.</p>
+                <div class="hidden text-gray-500 sm:mt-2 sm:block">
+                    <ul>
+                        <li>{{ $result->year }}</li>
+                        <li>{{ number_format(num: $result->odometerReading, thousands_separator: '.') }} {{ $result->odometerReadingUnit }}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
